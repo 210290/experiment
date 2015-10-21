@@ -1,0 +1,33 @@
+程序一：
+package p105032013092;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class Text92 {
+
+	@Test
+	public void test() {
+		SS b = new SS();
+		b.write();
+	}
+
+}
+
+程序二：
+package L;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class lingxingText {
+
+	@Test
+	public void test() {
+		lingXing l = new lingXing();
+		l.xingxing();
+	}
+
+}

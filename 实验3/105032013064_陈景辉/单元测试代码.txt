@@ -1,0 +1,44 @@
+单元测试1代码：
+package demo;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class TestDemoTest {
+
+	@Test
+	public void testLogin() {
+		TestDemo td=new TestDemo();
+		td.setUsername("admin");
+		td.setPassword("1234567");
+//		td.setMoney(50);
+//		td.setInterest(0.25);
+		td.login(td);
+	}
+
+//	@Test
+//	public void testCalculate() {
+//		TestDemo td=new TestDemo();
+//		td.calculate(50, 0.25);
+//	}
+
+}
+
+
+单元测试2代码：
+package 素数;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class SuShuTest {
+
+	@Test
+	public void test() {
+		SuShu s = new SuShu();
+		s.test();
+	}
+
+}

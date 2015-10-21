@@ -1,0 +1,56 @@
+程序单元1：
+package com.test;
+
+public class Money {
+	private int fAmount;//余额 
+	private String fCurrency;//货币类型 
+
+	public Money(int amount, String currency) { 
+	fAmount= amount; 
+	fCurrency= currency; 
+	} 
+
+	public int amount() { 
+	return fAmount; 
+	} 
+
+	public String currency() { 
+	return fCurrency; 
+	} 
+
+	public Money add(Money m) {//加钱 
+	return new Money(amount()+m.amount(), currency()); 
+	} 
+
+	public boolean equals(Object anObject) {//判断钱数是否相等 
+	if (anObject instanceof Money) { 
+	Money aMoney= (Money)anObject; 
+	return aMoney.currency().equals(currency()) 
+	&& amount() == aMoney.amount(); 
+	} 
+	return false; 
+	} 
+
+}
+
+
+
+
+程序单元2：
+package com.test;
+
+import java.util.InputMismatchException;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Mul {
+	
+	 
+	    public int mul(int x,int y) {  
+	        return x*y;  
+	    }  
+	    public double divide(double x,double y){  
+	        return x/y;  
+	    } 
+}

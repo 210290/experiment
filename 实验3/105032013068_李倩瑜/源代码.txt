@@ -1,0 +1,32 @@
+程序单元1：
+int CMyClass::_06_WhiteBox(int A, int B, int X)
+
+{
+    
+    if(A>1 && B==0)
+        
+        X = X/A;
+    
+    if(A==2 || X>1)
+        
+        X = X+1;
+
+    
+    return X;
+
+}
+
+程序单元2：
+int CMyClass::_11_Mcdc1(BOOL A, BOOL B, BOOL C)
+
+{
+
+    if(A && (B || C))
+
+        return 1;
+
+
+    return 0;
+
+}
+

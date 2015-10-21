@@ -1,0 +1,134 @@
+程序单元1：
+package demo;
+
+public class TestDemo {
+      private double money;
+      private String username;
+      private String password;
+      private double interest;
+      
+      
+      
+      public double getMoney() {
+		return money;
+	}
+
+
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+     
+
+	public double getInterest() {
+		return interest;
+	}
+
+
+
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}
+
+
+
+	public void login(TestDemo td){
+		String name=td.getUsername();
+		String pword=td.getPassword();
+		if(name!=null&&pword!=null){
+			 if(name.equals("admin")&&pword.equals("123")){
+				 System.out.println("登陆成功");
+		    	  
+			 }
+		    	  else {
+		    		  
+		    		  System.out.println("密码错误");
+				}
+	} else{
+		System.out.println("用户名或密码不能为空");
+	 }
+	}
+	
+	public void calculate(double money,double interest){
+//		int i = 0;
+		if(money<40){
+			System.out.println("边界1");
+		}else{
+			System.out.println("边界2");
+		}
+//		for(i=0;i<40;i++){
+//			money=money*(1+interest);
+//		}
+	}
+	
+    	 
+    	  
+}
+
+
+
+
+程序单元2：
+package 素数;
+import java.util.Scanner;
+public class SuShu {
+	public void test() {
+		long firstnum;
+		long secondnum;
+		boolean flag = true;
+		int num = 0;
+		Scanner input = new Scanner(System.in);
+		while (true) {
+			System.out.println("请输入第一个数字：");
+			firstnum = input.nextLong();
+			System.out.println("请输入第二个数字：");
+			secondnum = input.nextLong();
+			if (firstnum > secondnum ) {
+				System.out.println("您输入的数据不正确！");
+			}else
+			break;
+		}
+		for (long i = firstnum; i < secondnum; i++, flag = true) {
+			for (long j = 2; j <= Math.sqrt(i); j++) {
+				if (i % j == 0) {
+					flag = false;
+					break;
+				}
+			}
+			if (flag) {
+				num++;
+			}
+		}
+		System.out.println(num);
+	}
+}
+
+//	public static void main(String[] args) {
+//		SuShu s = new SuShu();
+//		s.test();
+//	}

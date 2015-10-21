@@ -1,0 +1,105 @@
+单元测试1代码：
+package com.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class CalculatorTest {
+	private static Calculator calculator = new Calculator();
+	@Before
+	public void setUp() throws Exception {
+		calculator.clear();
+	}
+
+	@Test
+	public void testAdd() {
+		calculator.add(2);
+        calculator.add(3);
+        assertEquals(5, calculator.getResult());
+	}
+
+	@Test
+	public void testSubstract() {
+		calculator.add(10);
+        calculator.substract(2);
+        assertEquals(8, calculator.getResult());
+	}
+
+	@Test
+	public void testMultiply() {
+		
+	}
+
+	@Test
+	public void testDivide() {
+		 calculator.add(8);
+	     calculator.divide(2);
+	     assertEquals(4, calculator.getResult());
+	}
+
+}
+
+单元测试2代码：
+package com.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class WordChangeTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@Test
+	public void test() {
+		String target = "employeeInfo"; 
+		String result =WordChange.wordFormat4DB(target); 
+		
+		assertEquals("employee_info", result); 
+	}
+//	 // 测试 null 时的处理情况
+//	 @Test public void wordFormat4DBNull(){ 
+//		 String target = null; 
+//		 String result = WordChange.wordFormat4DB(target); 
+//		
+//		 assertNull(result); 
+//	 } 
+//	
+//	 // 测试空字符串的处理情况
+//	 @Test public void wordFormat4DBEmpty(){ 
+//		 String target = ""; 
+//		 String result = WordChange.wordFormat4DB(target); 
+//		
+//		 assertEquals("", result); 
+//	 } 
+//
+//	 // 测试当首字母大写时的情况
+//	 @Test public void wordFormat4DBegin(){ 
+//		 String target = "EmployeeInfo"; 
+//		 String result = WordChange.wordFormat4DB(target); 
+//		
+//		 assertEquals("employee_info", result); 
+//	 } 
+//	
+//	 // 测试当尾字母为大写时的情况
+//	 @Test public void wordFormat4DBEnd(){ 
+//		 String target = "employeeInfoA"; 
+//		 String result = WordChange.wordFormat4DB(target); 
+//		
+//		 assertEquals("employee_info_a", result); 
+//	 } 
+//	
+//	 // 测试多个相连字母大写时的情况
+//	 @Test public void wordFormat4DBTogether(){ 
+//		 String target = "employeeAInfo"; 
+//		 String result = WordChange.wordFormat4DB(target); 
+//		
+//		 assertEquals("employee_a_info", result); 
+//	 } 
+
+}

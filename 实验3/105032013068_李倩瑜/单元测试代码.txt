@@ -1,0 +1,85 @@
+单元测试1代码：
+void Test_myclass_cpp_CMyClass::_06_WhiteBox_int_int_int(void)
+
+{
+
+    CMyClass* pObj = 0;
+
+    TEST_BEGIN_("CMyClass (MyClass.cpp)/_06_WhiteBox(int,int,int)");
+
+    TEST_CASE_BEGINO( ARG_DEFAULT )
+
+    int A = 3;
+
+    int B = 0;
+
+    int X = 0;
+
+    A = _TDIINT_(A)/*0*/;
+
+    B = _TDIINT_(B)/*0*/;
+
+    X = _TDIINT_(X)/*0*/;
+
+    TEST_RUN int ret = pObj->_06_WhiteBox(A, B, X);
+
+    TEST_ASSERT_EQUAL_INT( ret, _TDOINT_(ret)/*0*/ );
+
+    TEST_CASE_ENDO( ARG_DEFAULT )
+ 
+    BVTEST_BEGIN_3(O,int,A,R,0,int,B,R,1,int,X,R,2)
+
+    TEST_RUN int ret = pObj->_06_WhiteBox(A, B, X);
+    BVTEST_END(O,3)
+
+
+    TEST_RATE(1000);
+
+    TEST_END()
+
+}
+
+单元测试2代码：
+void Test_myclass_cpp_CMyClass::_11_Mcdc1_BOOL_BOOL_BOOL(void)
+
+{
+
+    CMyClass* pObj = 0;
+
+    TEST_BEGIN_("CMyClass (MyClass.cpp)/_11_Mcdc1(BOOL,BOOL,BOOL)");
+
+    TEST_CASE_BEGINO( ARG_DEFAULT )
+
+    BOOL A = 0;
+
+    BOOL B = 0;
+
+    BOOL C = 0;
+
+    A = _TDIINT_(A)/*0*/;
+
+    B = _TDIINT_(B)/*0*/;
+
+    C = _TDIINT_(C)/*0*/;
+
+    TEST_RUN int ret = pObj->_11_Mcdc1(A, B, C);
+
+    TEST_ASSERT_EQUAL_INT( ret, _TDOINT_(ret)/*0*/ );
+
+    TEST_CASE_ENDO( ARG_DEFAULT )
+    
+ 
+   BVTEST_BEGIN_3(O,int,A,R,0,int,B,R,1,int,C,R,2)
+
+    TEST_RUN int ret = pObj->_11_Mcdc1(A, B, C);
+
+    BVTEST_END(O,3)
+
+    
+TEST_RATE(1000);
+
+    TEST_END()
+
+}
+
+
