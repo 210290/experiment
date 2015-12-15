@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>政策法规查询</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+<script type="text/javascript"
+	src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+
+</head>
+
+<body>
+	<div data-role="page" id="laws" data-theme="b">
+		<div data-role="header">
+			<a href="homepage.html" data-role="button" data-icon="back">返回</a>
+			<h1>交警移动执法系统</h1>
+			<a href="homepage.html" data-role="button" data-icon="home">首页</a>
+		</div>
+
+		<div data-role="content">
+
+			<div data-role="fieldcontain">
+				<label for="search">查询政策法规:</label> <input type="search"
+					name="search" id="search" placeholder="支持模糊查询">
+			</div>
+			<fieldset data-role="controlgroup">
+				<legend>请选择查询条件：</legend>
+				<label for="issue">颁发部门</label> <input type="radio" name="searchkey"
+					id="issue" value="issue"> <label for="keyword">法规名称或内容关键字</label>
+				<input type="radio" name="searchkey" id="keyword" value="keyword">
+			</fieldset>
+			<input type="button" id="b_search" value="查询"> <span
+				id="lawslist"> <script>
+					$("#b_search").click(
+							function() {
+								var url = "LawsServlet";
+								var data = "search=" + $("#search").val()
+										+ "&searchkey=" + $(":checked").val();
+								//alert(data);
+								$.post(url, data, function(result) {
+									$("#lawslist").empty();
+
+									var list = eval('(' + result + ')');
+									for (var i = 0; i < list.length; i++) {
+										$("#lawslist").append(
+												i + 1 + ".《" + list[i].LAW_NAME
+														+ "》  " + "第 "
+														+ list[i].LEVEL1
+														+ " 条，    第 "
+														+ list[i].LEVEL2
+														+ " 款，    第 "
+														+ list[i].LEVEL3
+														+ " 项： "
+														+ list[i].CONTENT
+														+ "。 " + "<br>");
+									}
+
+								});
+							});
+				</script>
+			</span>
+			<script>
+				$(function() {
+					$("#search").empty();
+					$("#lawslist").empty();
+				});
+			</script>
+		</div>
+
+		<div data-role="footer">
+			<h6>为人民服务</h6>
+		</div>
+	</div>
+
+</body>
+</html>

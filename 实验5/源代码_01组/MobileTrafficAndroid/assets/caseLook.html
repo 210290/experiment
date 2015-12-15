@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>案件查看</title>
+	
+   <meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+<script type="text/javascript"
+	src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+</head>
+
+<body>
+	<div data-role="page" id="caseLook" data-theme="b">
+		<div data-role="header">
+			<a href="caseManagement.html" data-role="button" data-icon="back">返回</a>
+  			<h1>交警移动执法系统</h1>
+  			<a href="homepage.html" data-role="button"  data-icon="home">首页</a>			
+		</div>
+
+		<div data-role="content">
+			<span id="xiangxi"></span>
+			<div data-role="fieldcontain">
+				<label for="ajlczl">案件流程种类：</label> 
+					<select name="ajlczl" id="ajlczl">
+						<option>1</option>
+						<option>2</option>
+					</select> <br />
+				
+				<label for="zfdw">执法单位：</label> 
+				<input type="text" name="zfdw" id="zfdw" ><br>
+				
+				<label for="zfml">执法门类：   </label> 
+				<input type="text" name="zfml" id="zfml"><br>
+				
+				<label for="jgdm">机构代码：</label> 
+				<input type="text" name="jgdm" id="jgdm" ><br>
+				
+				<label for="wzztlb">违章主体类别：</label> 
+					<select name="wzztlb" id="wzztlb">
+						<option>人</option>
+						<option>车</option>
+						<option>企业</option>
+					</select> <br />
+				
+				<label for="ahz">案号字：</label> 
+				<input type="text" name="ahz" id="ahz" >
+				
+				<label for="ahhm">案号号码：</label> 
+				<input type="text" name="ahhm" id="ahhm" ><br>
+				
+				<label for="wzrq">违章日期：   </label> 
+				<input type="text" name="wzrq" id="wzrq"><br>
+				
+				<label for="wzsj">违章时间：</label> 
+				<input type="text" name="wzsj" id="wzsj" ><br>
+				
+				<label for="wzdd">违章地点：</label> 
+				<input type="text" name="wzdd" id="wzdd" ><br>
+				
+				<label for="dsrlxdh">当事人联系电话：</label> 
+				<input type="text" name="dsrlxdh" id="dsrlxdh" ><br>
+				
+				<label for="dsrzjlx">当事人证件类型：</label> 
+					<select name="dsrzjlx" id="dsrzjlx">
+						<option>身份证</option>
+						<option>港澳通行证</option>
+						<option>士兵证</option>
+						<option>军官证</option>
+					</select> <br />
+				
+				<label for="dsrzjhm">当事人证件号码：   </label> 
+				<input type="text" name="dsrzjhm" id="dsrzjhm"><br>
+				
+				<label for="clid">车辆id：</label> 
+				<input type="text" name="clid" id="clid" ><br>
+				
+				<label for="zkdh">暂扣单号：</label> 
+				<input type="text" name="zkdh" id="zkdh" ><br>
+				
+				<label for="zfdid">执法队id：</label> 
+				<input type="text" name="zfdid" id="zfdid" ><br>
+				
+				<label for="zfryid">执法人员id：</label> 
+				<input type="text" name="zfryid" id="zfryid" ><br>
+				
+				<label for="zfry">执法人员：   </label> 
+				<input type="text" name="zfry" id="zfry"><br>
+				
+				<label for="zfzh">执法证号：</label> 
+				<input type="text" name="zfzh" id="zfzh" ><br>
+				
+				<label for="ajzt">案件状态：</label> 
+				<input type="text" name="ajzt" id="ajzt" ><br>
+				
+				<label for="cjzbh">创建者编号：</label> 
+				<input type="text" name="cjzbh" id="cjzbh" ><br>
+				
+				<label for="cjrq">创建日期：</label> 
+				<input type="text" name="cjrq" id="cjrq" ><br>
+				
+				<label for="cjsj">创建时间：</label> 
+				<input type="text" name="cjsj" id="cjsj" ><br>
+				
+				</div>
+			<script type="text/javascript">
+			$(function(){
+				//alert(location.search.substring(1));
+				var url = "http://172.17.63.25:8080/MobileTraffic/CaseManagementServlet";
+				var data=location.search.substring(1)+"&flag=1";
+				//alert(data);
+				if(location.search.substring(1)==""){
+					location.reload();
+				}
+				
+				$.post(url, data, function(result) {
+							//alert(result);
+							var list = eval('(' + result + ')');						
+							$("#wzztlb").val(list[0].CASFLOWTYPE)
+									.textinput();
+							$("#zfdw").val(list[0].UNITID).textinput();
+							$("#zfml").val(list[0].TYPE_ID).textinput();
+							$("#jgdm").val(list[0].DEPCODE).textinput();
+							$("#wzztlb").val(list[0].CHEOBJECT).textinput();
+							$("#ahz").val(list[0].CASPREFIX).textinput();
+							$("#ahhm").val(list[0].CASNUM).textinput();
+							$("#wzrq").val(list[0].PECDATE).textinput();
+							$("#wzsj").val(list[0].PECTIME).textinput();
+							$("#wzdd").val(list[0].PRCSITE).textinput();
+							$("#dsrlxdh").val(list[0].PSNPHONE).textinput();
+							$("#dsrzjlx").val(list[0].PSNCTCTYPE)
+									.textinput();
+							$("#dsrzjhm").val(list[0].PSSNCTCNO).textinput();
+							$("#clid").val(list[0].CMVECID).textinput();
+							$("#zkdh").val(list[0].DETAINNO).textinput();
+							$("#zfdid").val(list[0].TEAMID1).textinput();
+							$("#zfryid").val(list[0].LAWEPID).textinput();
+							$("#zfry").val(list[0].LAWEPSN).textinput();
+							$("#zfzh").val(list[0].LECARDNO).textinput();
+							$("#ajzt").val(list[0].STATUS).textinput();
+							$("#cjzbh").val(list[0].CREUSRCODE)
+									.textinput();
+							$("#cjrq").val(list[0].CREDATE).textinput();
+							$("#cjsj").val(list[0].CRETIME).textinput();
+							location = location();
+						});
+					});			
+			</script>
+			<a href="evidence.html" data-role="button">证据上传</a>
+			<a href="caseLook.html" data-role="button">案件修改</a> 
+			<a href="caseDelete.html" data-role="button">案件废除</a>
+		</div>
+
+		<div data-role="footer">
+			<h6>为人民服务</h6>
+		</div>
+	</div>
+
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>车辆信息查询</title>
+
+<meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+<script type="text/javascript"
+	src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+</head>
+
+<body>
+	<div data-role="page" id="carInfo" data-theme="b">
+		<div data-role="header">
+			<a href="homepage.html" data-role="button" data-icon="back">返回</a>
+			<h1>交警移动执法系统</h1>
+			<a href="homepage.html" data-role="button" data-icon="home">首页</a>
+		</div>
+
+		<div data-role="content">
+
+			<div data-role="fieldcontain">
+				<label for="search">车辆信息查询：</label> <input type="search"
+					name="search" id="search" placeholder="支持模糊查询">
+			</div>
+
+			<fieldset data-role="controlgroup">
+				<legend>请选择查询条件：</legend>
+				<fieldset data-role="fieldcontain">
+					<label for="carLocation">按车牌号查询请选择车牌号字：</label> <select
+						name="carLocation" id="carLocation">
+						<option></option>
+						<option>浙</option>
+						<option>闽</option>
+						<option>粤</option>
+						<option>京</option>
+						<option>津</option>
+						<option>冀</option>
+						<option>晋</option>
+						<option>蒙</option>
+						<option>辽</option>
+						<option>吉</option>
+						<option>黑</option>
+						<option>沪</option>
+						<option>苏</option>
+						<option>皖</option>
+						<option>赣</option>
+						<option>鲁</option>
+						<option>豫</option>
+						<option>鄂</option>
+						<option>湘</option>
+						<option>桂</option>
+						<option>琼</option>
+						<option>渝</option>
+						<option>川</option>
+						<option>贵</option>
+						<option>云</option>
+						<option>藏</option>
+						<option>陕</option>
+						<option>甘</option>
+						<option>青</option>
+						<option>宁</option>
+						<option>新</option>
+					</select>
+				</fieldset>
+				<label for="number">车牌号</label> <input type="radio" name="carsearch"
+					id="number" value="number">
+				
+				<label for="character">车辆特征（车牌颜色或车型）</label> <input type="radio"
+					name="carsearch" id="character" value="character">
+			</fieldset>
+			<input type="button" id="b_search" value="查询"> <span
+				id="carlist"> <script>
+					$("#b_search").click(
+							function() {
+								var url = "http://172.17.63.25:8080/MobileTraffic/CarServlet";
+								var data = "search="
+										+ $("#search").val()
+										+ "&carLocation="
+										+ $("#carLocation option:selected")
+												.val()
+										+ "&carsearch="
+										+ $("input[name='carsearch']:checked")
+												.val();
+								//alert(data);
+								$.post(url, data, function(result) {
+									$("#carlist").empty();
+									//alert(result);
+
+									var list = eval('(' + result + ')');
+									for (var i = 0; i < list.length; i++) {
+										$("#carlist").append(
+												i + 1 + ".车牌号："
+														+ list[i].BRAPREFIX
+														+ list[i].BRANUM
+														+ "  车牌颜色： "
+														+ list[i].BRACOLOR
+														+ "  车型："
+														+ list[i].VECTYPE
+														+ "  车主： "
+														+ list[i].VECOWENAME
+														+ "  联系电话："
+														+ list[i].VECOWEPHONE
+														+ "<br>");
+									}
+
+								});
+							});
+				</script>
+			</span>
+			<script>
+				$(function() {
+					$("#search").empty();
+					$("#carlist").empty();
+				});
+			</script>
+
+		</div>
+
+		<div data-role="footer">
+			<h6>为人民服务</h6>
+		</div>
+	</div>
+
+</body>
+</html>

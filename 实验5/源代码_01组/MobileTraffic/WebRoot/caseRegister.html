@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>案件登记</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+<script type="text/javascript"
+	src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+<link rel="stylesheet" href="jquery.mobile-1.4.5/Jquery.ui.datepicker.mobile.css" /> 
+<script src="jquery.mobile-1.4.5/Jquery.ui.datepicker.js"></script>
+<script src="jquery.mobile-1.4.5/Jquery.ui.datepicker.mobile.js"></script>
+
+	
+<script type="text/javascript">
+	$(function(){
+  		$("#wzrq").datepicker();
+  			
+	});
+
+
+</script>
+
+</head>
+
+<body>
+	<div data-role="page" id="caseRegister" data-theme="b">
+		<div data-role="header">
+			<a href="caseManagement.html" data-role="button" data-icon="back">返回</a>
+  			<h1>交警移动执法系统</h1>
+  			<a href="homepage.html" data-role="button"  data-icon="home">首页</a>			
+		</div>
+
+		<div data-role="content">
+			<div data-role="fieldcontain">
+				<label for="ajlczl">案件流程种类：</label> 
+					<select name="ajlczl" id="ajlczl">
+						<option>1</option>
+						<option>2</option>
+					</select> <br />
+				
+
+				
+				<label for="wzztlb">违章主体类别：</label> 
+					<select name="wzztlb" id="wzztlb">
+						<option>人</option>
+						<option>车</option>
+						<option>企业</option>
+					</select> <br />
+				
+
+				
+				<label for="wzrq">违章日期：   </label> 
+				<input type="date" name="wzrq" id="wzrq"><br>
+				
+				<label for="wzsj">违章时间：</label> 
+				<input type="text" name="wzsj" id="wzsj" ><br>
+				
+				<label for="wzdd">违章地点：</label> 
+				<input type="text" name="wzdd" id="wzdd" ><br>
+				
+				<label for="dsrlxdh">当事人联系电话：</label> 
+				<input type="text" name="dsrlxdh" id="dsrlxdh" ><br>
+				
+				<label for="dsrzjlx">当事人证件类型：</label> 
+					<select name="dsrzjlx" id="dsrzjlx">
+						<option>身份证</option>
+						<option>港澳通行证</option>
+						<option>士兵证</option>
+						<option>军官证</option>
+					</select> <br />
+				
+				<label for="dsrzjhm">当事人证件号码：   </label> 
+				<input type="text" name="dsrzjhm" id="dsrzjhm"><br>
+				
+				<label for="cphz">车牌号字：</label> 
+				<select name="cphz" id="cphz">
+						<option></option>
+						<option>浙</option>
+						<option>闽</option>
+						<option>粤</option>
+						<option>京</option>
+						<option>津</option>
+						<option>冀</option>
+						<option>晋</option>
+						<option>蒙</option>
+						<option>辽</option>
+						<option>吉</option>
+						<option>黑</option>
+						<option>沪</option>
+						<option>苏</option>
+						<option>皖</option>
+						<option>赣</option>
+						<option>鲁</option>
+						<option>豫</option>
+						<option>鄂</option>
+						<option>湘</option>
+						<option>桂</option>
+						<option>琼</option>
+						<option>渝</option>
+						<option>川</option>
+						<option>贵</option>
+						<option>云</option>
+						<option>藏</option>
+						<option>陕</option>
+						<option>甘</option>
+						<option>青</option>
+						<option>宁</option>
+						<option>新</option>
+					</select><br>
+				
+				<label for="cphm">车牌号码：</label> <br>
+				<input type="text"  id="cphm" name="cphm">
+
+				
+				<input type="button" id="b_register" value="添加">
+				
+				<script type="text/javascript">
+					$("#b_register").click(function(){
+						var url = "CaseRegisterServlet";
+						var data = "ajlczl="+ $("#ajlczl option:selected").val()
+// 									+ "&zfdw="+ $("#zfdw").val()
+// 									+ "&zfml="+ $("#zfml").val()
+// 									+ "&jgdm="+ $("#jgdm").val()
+									+ "&wzztlb="+ $("#wzztlb option:selected").val()
+// 									+ "&ahz="+ $("#ahz").val()
+// 									+ "&ahhm="+ $("#ahhm").val()
+									+ "&wzrq="+ $("#wzrq").val()
+									+ "&wzsj="+ $("#wzsj").val()
+									+ "&wzdd="+ $("#wzdd").val()
+									+ "&dsrlxdh="+ $("#dsrlxdh").val()
+									+ "&dsrzjlx="+ $("#dsrzjlx option:selected").val()
+									+ "&dsrzjhm="+ $("#dsrzjhm").val()
+									+ "&cphz="+ $("#cphz option:selected").val()
+									+ "&cphm="+ $("#cphm").val();
+// 									+ "&clid="+ $("#clid").val()
+// 									+ "&zkdh="+ $("#zkdh").val()
+// 									+ "&zfdid="+ $("#zfdid").val()
+// 									+ "&zfryid="+ $("#zfryid").val()
+// 									+ "&zfry="+ $("#zfry").val()
+// 									+ "&zfzh="+ $("#zfzh").val()
+// 									+ "&ajzt="+ $("#ajzt").val()
+// 									+ "&cjzbh="+ $("#cjzbh").val()
+// 									+ "&cjrq="+ $("#cjrq").val()
+// 									+ "&cjsj="+ $("#cjsj").val();
+									
+								//alert(data);
+								$.post(url, data, function(result) {									
+									//alert(result);
+									if(result=="1")
+									{
+										alert("添加成功！");
+										window.location.href="caseManagement.html";
+									}
+									else{
+										alert("添加失败！");
+									}
+ 								});				
+					});			
+				</script>
+			</div>
+			
+			
+			
+		</div>
+
+		<div data-role="footer">
+			<h6>为人民服务</h6>
+		</div>
+	</div>
+
+  </body>
+</html>

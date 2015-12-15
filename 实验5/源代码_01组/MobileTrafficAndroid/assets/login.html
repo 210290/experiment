@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>登陆</title>
+	
+   <meta charset="UTF-8">
+    
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+<script type="text/javascript"
+	src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#login").click(function(){
+			//$(function(){
+				var url="http://172.17.63.25:8080/MobileTraffic/LoginServlet";
+				var data="fname="+$("#fname").val()+"&fpassword="+$("#fpassword").val();
+				//alert(data);
+				$.post(url,data,function(result){
+					//alert(result);
+					if(result=="1"){
+						window.location.href="homepage.html";
+					}
+					else{
+					    window.location.href="login.html";
+						alert("账号或密码错误！");
+					}			
+			   // });
+		    });
+		});
+	});
+	</script>
+</head>
+
+<body>
+	<div data-role="page" id="pagelogin" data-theme="b">
+		<div data-role="header">
+			<h1>交警移动执法系统</h1>
+		</div>
+
+		<div data-role="content">
+				<div data-role="fieldcontain">
+				<label for="fname">账号：</label> 
+				<input type="text" name="fname" id="fname" ><br>
+				
+				<label for="fpassword">密码：   </label> 
+				<input type="password" name="fpassword" id="fpassword"><br>
+				
+				</div>
+				<input type="button" id="login" value="登录">
+		</div>
+
+		<div data-role="footer">
+			<h6>为人民服务</h6>
+		</div>
+	</div>
+
+</body>
+</html>

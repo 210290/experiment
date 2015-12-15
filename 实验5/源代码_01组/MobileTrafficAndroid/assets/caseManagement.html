@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>案件管理</title>
+	<meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+<script type="text/javascript"
+	src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+</head>
+
+<body>
+	<div data-role="page" id="caseManagement" data-theme="b">
+		<div data-role="header">			
+			<a href="homepage.html" data-role="button" data-icon="back">返回</a>
+  			<h1>交警移动执法系统</h1>
+  			<a href="homepage.html" data-role="button"  data-icon="home">首页</a>			
+		</div>
+		
+
+		<div data-role="content">
+			<div data-role="controlgroup" data-type="horizontal">
+				 <a href="caseRegister.html" data-role="button">新案件登记</a>
+			</div>
+			<h4>已登记违章案件（点击查看详情）：</h4>
+			<span id="caseList">				
+				<script>
+					$(function() {
+						var url = "http://172.17.63.25:8080/MobileTraffic/CaseManagementServlet";
+						var data = "flag=0";
+						$.post(url, data, function(result) {
+							//alert(result);
+							var list = eval('(' + result + ')');						
+							for (var i = 0; i < list.length; i++) {
+								$("#caseList").append(
+											"<a href=caseLook.html?casid="+list[i].CASID+" data-role='button'>"
+												+ list[i].PECDATE+ "  " 
+												+ list[i].PECTIME+ "  " 
+												+ list[i].PRCSITE+"</a>");										
+								$("#caseList").trigger('create');
+							}
+						});
+					});
+					</script>
+			
+			</span>
+			
+		      
+		    
+		</div>
+
+		<div data-role="footer">
+			<h6>为人民服务</h6>
+		</div>
+	</div>
+
+  </body>
+</html>

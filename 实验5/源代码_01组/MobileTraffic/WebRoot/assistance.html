@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>协查通报</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+<script type="text/javascript"
+	src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+
+
+</head>
+
+<body>
+	<div data-role="page" id="assistance" data-theme="b">
+		<div data-role="header">
+			<a href="homepage.html" data-role="button" data-icon="back">返回</a>
+			<h1>交警移动执法系统</h1>
+			<a href="homepage.html" data-role="button" data-icon="home">首页</a>
+		</div>
+
+		<div data-role="content">
+			<div data-role="fieldcontain">
+				<h3>车辆匹配查询</h3>
+				<fieldset data-role="fieldcontain">
+					<label for="cphz">车牌号字：</label> <select name="cphz" id="cphz">
+						<option></option>
+						<option>浙</option>
+						<option>闽</option>
+						<option>粤</option>
+						<option>京</option>
+						<option>津</option>
+						<option>冀</option>
+						<option>晋</option>
+						<option>蒙</option>
+						<option>辽</option>
+						<option>吉</option>
+						<option>黑</option>
+						<option>沪</option>
+						<option>苏</option>
+						<option>皖</option>
+						<option>赣</option>
+						<option>鲁</option>
+						<option>豫</option>
+						<option>鄂</option>
+						<option>湘</option>
+						<option>桂</option>
+						<option>琼</option>
+						<option>渝</option>
+						<option>川</option>
+						<option>贵</option>
+						<option>云</option>
+						<option>藏</option>
+						<option>陕</option>
+						<option>甘</option>
+						<option>青</option>
+						<option>宁</option>
+						<option>新</option>
+					</select>
+				</fieldset>
+				<label for="cphm">车牌号码：</label> <input type="search" name="cphm"
+					id="cphm" placeholder="支持模糊查询"> <label for="cpys">车牌颜色：</label>
+				<input type="search" name="cpys" id="cpys" placeholder="支持模糊查询">
+				<label for="cllx">车辆类型：</label> <input type="search" name="cllx"
+					id="cllx" placeholder="支持模糊查询"> <label for="clpp">车辆品牌：</label>
+				<input type="search" name="clpp" id="clpp" placeholder="支持模糊查询">
+			</div>
+
+			<input type="button" id="b_search" value="查询"> <span
+				id="assistanceList"> <script>
+					$(function() {
+						var url = "AssistanceServlet";
+						var data = "show=0";
+						$.post(url, data, function(result) {
+							//alert(result);
+							var list = eval('(' + result + ')');
+							for (var i = 0; i < list.length; i++) {
+								$("#assistanceList").append(
+										"<div data-role='collapsible'><h4>"
+												+ list[i].CPHZ + list[i].CPHM
+												+ " " + list[i].CZXM
+												+ "   生效： " + list[i].SXRQ
+												+ "</h4>" + "<p>" + "车牌号码："
+												+ list[i].CPHZ + list[i].CPHM
+												+ "<br>" + "车牌颜色："
+												+ list[i].CPYS + "<br>"
+												+ "车辆类型：" + list[i].CLLX
+												+ "<br>" + "车主姓名："
+												+ list[i].CZXM + "<br>"
+												+ "车辆品牌：" + list[i].CLTZ
+												+ "<br>" + "车籍：" + list[i].CLJD
+												+ "<br>" + "协查原因："
+												+ list[i].XCYY + "<br>"
+												+ "建议处罚：" + list[i].JYCF
+												+ "<br>" + "是否立案："
+												+ list[i].SFLA + "<br>"
+												+ "立案时间：" + list[i].LARQ
+												+ "<br>" + "生效时间："
+												+ list[i].SXRQ + "<br>" +
+
+												"</p></div>");
+								$("#assistanceList").trigger('create');
+							}
+						});
+					});
+					$(function() {
+		$("#b_search").click(
+				function() {
+					var url = "AssistanceServlet";
+					var data = "cphz=" + $("#cphz").val() + "&cphm="
+							+ $("#cphm").val() + "&cpys=" + $("#cpys").val()
+							+ "&cllx=" + $("#cllx").val() + "&clpp="
+							+ $("#clpp").val() + "&show=1";
+					//alert(data);
+					$.post(url, data, function(result) {
+						//alert(result);
+						$("#assistanceList").empty();
+						var list = eval('(' + result + ')');
+						for (var i = 0; i < list.length; i++) {
+							$("#assistanceList").append(
+									"<div data-role='collapsible'><h4>"
+											+ list[i].CPHZ + list[i].CPHM + " "
+											+ list[i].CZXM + "   生效： "
+											+ list[i].SXRQ + "</h4>" + "<p>"
+											+ "车牌号码：" + list[i].CPHZ
+											+ list[i].CPHM + "<br>" + "车牌颜色："
+											+ list[i].CPYS + "<br>" + "车辆类型："
+											+ list[i].CLLX + "<br>" + "车主姓名："
+											+ list[i].CZXM + "<br>" + "车辆品牌："
+											+ list[i].CLTZ + "<br>" + "车籍："
+											+ list[i].CLJD + "<br>" + "协查原因："
+											+ list[i].XCYY + "<br>" + "建议处罚："
+											+ list[i].JYCF + "<br>" + "是否立案："
+											+ list[i].SFLA + "<br>" + "立案时间："
+											+ list[i].LARQ + "<br>" + "生效时间："
+											+ list[i].SXRQ + "<br>" +
+
+											"</p></div>");
+							$("#assistanceList").trigger('create');
+						}
+					});
+
+				});
+	});
+				</script>
+			</span>
+		</div>
+
+		<div data-role="footer">
+			<h6>为人民服务</h6>
+		</div>
+	</div>
+
+</body>
+</html>
